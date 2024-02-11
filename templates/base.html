@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body {font-family: sans-serif}
+        input {
+            margin-bottom: 10px;
+        }
+        .indent {
+            margin-left: 30px;
+            font-style: italic;
+            padding-bottom: 20px;
+            /* color: purple; */
+        }
+        .small-button-text {
+            font-size: 75%;        
+            /* color: red; */
+        }
+        .small-button-padding {
+            padding: 0px 5px 0px 5px;
+        }
+        .warning {
+            background-color: rgb(250, 177, 177);
+            font-size: 80%;
+            width: 200px;
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+ 
+    {% if session['userid'] %}
+        <form style='display:inline' method="post" action="/logout">
+         (Logged in as <em>{{session['userid']}}</em>)&nbsp;&nbsp;
+            <button>Logout</button>
+        </form>
+        &nbsp;&nbsp;&nbsp;
+        {% if confirm_unregister %}
+        <br><br>
+        <form method="post" action="/users/{{session['userid']}}/delete">
+            <button>Sure you want to unregister??</button>
+        </form>
+        {% else %}
+        <form style='display:inline' method="post" action="/users/{{session['userid']}}/delete_conf">
+            <button>Unregister</button>
+        </form>
+        {% endif %}
+    {% else %}
+        <a href="/login">Login</a>&nbsp;&nbsp;&nbsp;
+        <a href="/register">Register</a>
+    {% endif %}
+
+    <h1> Feedback Rap </h1>
+
+    {% block content %}
+ 
+    {% endblock %}
+    
+</body>
+</html>

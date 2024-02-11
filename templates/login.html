@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<h4>Please Login:</h4>
+<form method="POST">
+  {% if bad_user %}
+  <div class="warning">No such user; please try again.<br /></div>
+  {% endif %}
+  <label for="username">Username:</label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    {%
+    if
+    username
+    %}
+    value="{{username}}"
+    {%
+    endif
+    %}
+  /><br />
+  {% if bad_password %}
+  <div class="warning">Bad password; please try again.<br /></div>
+  {% endif %}
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" /><br />
+  <button id="submit">Login</button>
+</form>
+{% endblock %}

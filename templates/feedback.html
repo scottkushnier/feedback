@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %} {% for feedback in feedbacks %}
+<strong>{{ feedback.title }}:</strong>
+<div class="indent" >
+    {{ feedback.content }} &nbsp;&nbsp;&nbsp;&nbsp;
+    <form style='display:inline'>
+    <button class="small-button-padding"
+    formaction="/feedback/{{ feedback.id }}/update">
+    <span class="small-button-text">Edit</span></button>&nbsp;&nbsp;
+    </form>
+    <form style='display:inline'>
+    <button formmethod="POST"
+      class="small-button-padding"
+      formaction="/feedback/{{ feedback.id }}/delete">
+      <span class="small-button-text">Delete</span>
+    </button>
+    </form>
+</div>
+
+{% endfor %}
+  <form action="{{ username }}/feedback/add">
+    <button>Add Feedback</button>
+  </form>
+
+  {% endblock %}
+</form>
